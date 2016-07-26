@@ -1,0 +1,40 @@
+<%= form_for :user, url: users_path do |f| %>
+   <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prevented
+        this user information from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :email_confirmation %>
+    <%= f.text_field :email_confirmation %>
+  </p>
+
+  <p>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </p>
+  <%= f.label :phone_type %><br>
+
+<%= f.select :phone_type, User.phone_types.keys %>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
