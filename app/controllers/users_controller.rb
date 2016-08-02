@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+
   def show
     @user = User.find(params[:id])
   end
@@ -13,13 +14,21 @@ class UsersController < ApplicationController
   @user = User.find(params[:id])
   end
 
+  def login
+    @user = User.new
+  end
+
 
 
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in @user
+      flash[:success] = "Welcome to TextPhone"
       redirect_to @user
       else
+        flash[:notice] = "Form is invalid"
+        flash[:color]= "invalid"
         render 'new'
       end
 
@@ -38,8 +47,11 @@ class UsersController < ApplicationController
 
 
   private
+  
+
+
   def user_params
-    params.require(:user).permit(:name, :email, :phone, :phone_type, :email_confirmation)
+    params.require(:user).permit(:name, :email, :phone, :phone_type, :email_confirmation, :password)
   end
 
 end

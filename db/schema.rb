@@ -10,15 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723232802) do
+ActiveRecord::Schema.define(version: 20160731191744) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "phone_type"
+    t.string   "salt"
+    t.string   "password"
+    t.string   "password_digest"
+    t.index ["name"], name: "index_users_on_name", unique: true
   end
 
 end

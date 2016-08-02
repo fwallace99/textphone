@@ -1,4 +1,10 @@
 <h2>Your user info</h2>
+ <% if flash[:notice] %>
+    <div class="valid">
+    <%= flash[:notice] %></div>
+  <% end %>
+
+<%= debug @user%>
 <p>
   <strong>Username:</strong>
   <%= @user.name %>

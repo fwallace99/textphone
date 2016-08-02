@@ -1,8 +1,6 @@
-#class User < ApplicationRecord
 class User < ApplicationRecord
 
-  #enum status: { active: 0, archived: 1 }
-
+  
   enum phone_type: {"AllTell" => 0,
                     "ATT" => 1,
                     "NexTel" => 2,
@@ -20,8 +18,25 @@ class User < ApplicationRecord
                   }
 
    validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
-   validates :name, presence: true
+   validates :name, presence: true, uniqueness: true, :length => { :in => 3..20 }
    validates :phone, numericality: { only_integer: true }
    validates :phone, length: { is: 10 }
-   validates :email, confirmation: true
+   validates :email, confirmation: true, uniqueness: true
+   
+  validates :password, :confirmation => true #password_confirmation attr
+  validates_length_of :password, :in => 6..20, :on => :create
+
+  
+
+  
+
+  has_secure_password
+    
+
+
+  
+  
+
+
+
 end
