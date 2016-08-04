@@ -1,9 +1,16 @@
 <% provide(:title, "Home") %>
 <div class="center jumbotron">
+<% if !logged_in? %>
 <h1>TextPhone</h1>
-<p>
-  TextPhone allows you to send a Text to your cellphone.
-</p>
 
-<%= link_to "Sign up now!", '/users/new', class: "btn btn-lg btn-primary" %>
-</div>
+  <p>
+    TextPhone allows you to send a Text to your cellphone.
+  </p>
+
+
+  <%= link_to "Sign up now!", '/users/new', class: "btn btn-lg btn-primary" %>
+  </div>
+<% else %>
+<p>Click on "Send a Text" to send a text to your phone!</p>
+
+<% end %>

@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+users = User.order(:created_at).take(6)
+4.times do
+  content = "Some stuff"
+  users.each { |user| user.sms.create!(content: content) }
+end

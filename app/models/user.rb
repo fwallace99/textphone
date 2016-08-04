@@ -16,12 +16,15 @@ class User < ApplicationRecord
                     "Ptel" => 12,
                     "Suncom" =>13
                   }
+   has_many :sms, dependent: :destroy               
 
+   validates :name, uniqueness: true, :on => :create
    validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
-   validates :name, presence: true, uniqueness: true, :length => { :in => 3..20 }
+   validates :name, presence: true, :length => { :in => 3..20 }
+  
    validates :phone, numericality: { only_integer: true }
    validates :phone, length: { is: 10 }
-   validates :email, confirmation: true, uniqueness: true
+   validates :email, confirmation: true, uniqueness: true, :on => :create
    
   validates :password, :confirmation => true #password_confirmation attr
   validates_length_of :password, :in => 6..20, :on => :create

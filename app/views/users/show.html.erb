@@ -20,15 +20,30 @@
 <p>
   <strong>Phone:</strong>
   <%= number_to_phone(@user.phone, area_code: true) %>
-</p>
+</p> 
 
 <p>
   <strong>Phone Type:</strong>
   <%= @user.phone_type %>
 </p>
 
+<div class="col-md-8">
+    <% if @user.sms.any? %>
+      <h3>Text Messages (<%= @user.sms.count %>)</h3>
+      <ol class="microposts">
+      <% @user.sms.each do |mssg| %>
+            <li>
+              <span class="content"><%= mssg.content %></span>
+              <span class="timestamp">
+              Posted <%= time_ago_in_words(mssg.created_at) %> ago.
+              </span>
+            </li>
+         
+          <% end %>
+          </ol>
+   </div>
+    <% end %>
 
 
-<%= debug @user%>
 
 
