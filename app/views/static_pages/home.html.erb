@@ -13,4 +13,12 @@
 <% else %>
 <p>Click on "Send a Text" to send a text to your phone!</p>
 
+  <%= form_for(@sm) do |f| %>
+  <%= render 'static_pages/sms_errors' %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Write a Text Message 160 Characters or less" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
+
 <% end %>

@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :users
   # root 'welcome#index'
   root 'static_pages#home'
-  resources :sms
+  resources :sms,     only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
